@@ -1,0 +1,5 @@
+C:\Users\20231014040002\Documents\poo\helloworld\obj\Debug\net5.0\helloworld.csproj.AssemblyReference.cache
+C:\Users\20231014040002\Documents\poo\helloworld\obj\Debug\net5.0\helloworld.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\20231014040002\Documents\poo\helloworld\obj\Debug\net5.0\helloworld.AssemblyInfoInputs.cache
+C:\Users\20231014040002\Documents\poo\helloworld\obj\Debug\net5.0\helloworld.AssemblyInfo.cs
+C:\Users\20231014040002\Documents\poo\helloworld\obj\Debug\net5.0\helloworld.csproj.CoreCompileInputs.cache

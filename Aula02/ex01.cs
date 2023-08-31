@@ -27,9 +27,17 @@ class Aula02{
     Console.WriteLine('1' + '1') //98 (soma os valores ASCII dos caracteres)
     Console.WriteLine("1" + "1") //11
     Console.WriteLine("1" + '1') //11 (conversão da linguagem)
-    double x = 1;
-    int y = (int) 1.5;
+    double x = 1.5;
+    int y = (int) x; // conversão de número real para inteiro
     Console.WriteLine(x);
     Console.WriteLine(y);
+        //conversão de texto para real
+    s = "10.23";
+    double z = double.Parse(s);
+    Console.WriteLine("Soma " + (z+z));
+        //conversão de real para texto
+    z = 8.9;
+    s = z.ToString();
+    Console.WriteLine("Concatenação "+s+s);
   }
 }

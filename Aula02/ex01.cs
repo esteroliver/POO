@@ -14,10 +14,12 @@ class Aula02{
     Console.WriteLine(d);
     Console.WriteLine(e);
 
+    Console.WriteLine("Digite o seu nome");
     string s = Console.ReadLine(); //input
-    Console.WriteLine(s+s); 
+    Console.WriteLine("Olá, " + s);
 
+    Console.WriteLine("Digite um valor inteiro");
     int i = int.Parse(Console.ReadLine()); //int(input())
-    Console.WriteLine(i+i);
+    Console.WriteLine("i * 2 = " + (i+i));
   }
 }

@@ -21,5 +21,15 @@ class Aula02{
     Console.WriteLine("Digite um valor inteiro");
     int i = int.Parse(Console.ReadLine()); //int(input())
     Console.WriteLine("i * 2 = " + (i+i));
+
+    //concatenação e conversão
+    Console.WriteLine(1 + abc); //1abc
+    Console.WriteLine('1' + '1') //98 (soma os valores ASCII dos caracteres)
+    Console.WriteLine("1" + "1") //11
+    Console.WriteLine("1" + '1') //11 (conversão da linguagem)
+    double x = 1;
+    int y = (int) 1.5;
+    Console.WriteLine(x);
+    Console.WriteLine(y);
   }
 }

@@ -9,7 +9,7 @@ class Programa{
         String[] nomes = new String[10];
         int[] populacoes = new int[10];
         while (n < 10){
-            nomes[n] = inp.nextLine();
+            nomes[n] = inp.next();
             populacoes[n] = inp.nextInt();
             Pais x = new Pais(nomes[n], populacoes[n]);
             paises.add(x);

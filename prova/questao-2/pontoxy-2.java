@@ -17,7 +17,7 @@ class Programa{
         System.out.println(p2.Origem());
         
         System.out.println("Soma dos pontos 1 e 2.");
-        PontoXY p3 = p1.Somar(p2);
+        PontoXY p3 = PontoXY.Somar(p1, p2);
         System.out.println(p3.ToString());
     }
 }
@@ -49,8 +49,10 @@ class PontoXY{
         return (x*x) + (y*y);
     }
         //SOMA DE DOIS PONTOS
-    public PontoXY Somar(PontoXY ponto){
-        return new PontoXY(x + ponto.x , y + ponto.y);
+    public static PontoXY Somar(PontoXY ponto1, PontoXY ponto2){
+        double x = ponto1.x + ponto2.x;
+        double y = ponto1.y + ponto2.y;
+        return new PontoXY(x, y);
     }
     //MOSTRAR VALORES EM STRING
     public String ToString(){

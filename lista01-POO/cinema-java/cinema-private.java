@@ -4,7 +4,7 @@ class Programa{
     public static void main (String args[]){
         Cinema x;
         x = new Cinema();
-        x.setDia("quarta");
+        x.setDia("sexta");
         x.setHorario(18);
         x.Preco();
         x.outPreco();
@@ -24,32 +24,32 @@ class Cinema{
             this.horario = horario;
         }
         else{
-            //retornar erro
+            throw new IllegalArgumentException();
         }
     }
 
     public void Acrescimo(int horario){
         if (horario >= 17){
-            this.preco = preco + preco/2;
+            preco = preco + preco/2;
         }
     }
     
     public void Preco(){
         if (dia.equals("segunda") || dia.equals("terça") || dia.equals("quinta")){
-            this.preco = 16;
-            this.Acrescimo(horario);
+            preco = 16;
+            Acrescimo(horario);
         }
         if (dia.equals("quarta")){
-            this.preco = 8;
-            this.Acrescimo(horario);
+            preco = 8;
+            Acrescimo(horario);
         }
         if (dia.equals("sexta") || dia.equals("sábado") || dia.equals("domingo")){
             preco = 20;
-            this.Acrescimo(horario);
+            Acrescimo(horario);
         }
     }
     
     public void outPreco(){
-        out.println(this.preco);
+        out.println(preco);
     }
 }

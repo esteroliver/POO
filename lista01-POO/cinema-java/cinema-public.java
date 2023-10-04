@@ -21,19 +21,19 @@ class Cinema{
         }
     }
 
-    public void Preco(){
+    public double Preco(){
         if (dia.equals("segunda") || dia.equals("terça") || dia.equals("quinta")){
-            preco = 16;
+            this.preco = 16;
             this.Acrescimo(horario, preco);
         }
         if (dia.equals("quarta")){
-            preco = 8;
+            this.preco = 8;
             this.Acrescimo(horario, preco);
         }
         if (dia.equals("sexta") || dia.equals("sábado") || dia.equals("domingo")){
-            preco = 20;
+            this.preco = 20;
             this.Acrescimo(horario, preco);
         }
-        return preco;
+        return this.preco;
     }
 }

@@ -1,5 +1,6 @@
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 class Programa{
     public static void main(String args[]){
@@ -8,13 +9,19 @@ class Programa{
         Musica m3 = new Musica("Evil", "Melanie Martinez", "Portals", "04:06");
         Musica m4 = new Musica("Pity Party", "Melanie Martinez", "Crybaby", "03:25");
 
+        Musica teste1 = new Musica("AAA", "AAA", "AAA", "01:01");
+        Musica teste2 = new Musica("ZZZ", "ZZZ", "ZZZ", "01:01");
+
         Playlist p1 = new Playlist("diva", "Músicas da melanie martinez");
         p1.Inserir(m1);
         p1.Inserir(m2);
         p1.Inserir(m3);
         p1.Inserir(m4);
-        System.out.println(p1.TempoTotal());
-        System.out.println(p1.ToString());
+        p1.Inserir(teste1);
+        p1.Inserir(teste2);
+        for (Musica m : p1.Listar()) {
+            System.out.println(m.getTitulo());
+        }
     }
 }
 
@@ -40,6 +47,13 @@ class Playlist{
         return tempototal;
     }
 
+    public Musica[] Listar(){
+        Musica[] aux = new Musica[k];
+        System.arraycopy(musicas, 0, aux, 0, k);
+        Arrays.sort(aux);
+        return aux;
+    }
+
     public String ToString(){
         return "Nome da playlist: " + nome + "\n" +
         "Descrição: " + descricao + "\n" + 
@@ -47,8 +61,9 @@ class Playlist{
     }
 }
 
-class Musica{
+class Musica implements Comparable<Musica>{
     private String titulo, artista, album, duracao;
+    private int aux;
 
     public Musica(String titulo, String artista, String album, String duracao){
         setTitulo(titulo);
@@ -108,10 +123,19 @@ class Musica{
     public String getDuracao(){
         return duracao;
     }
+
     public String ToString(){
         return "Título: " + titulo + "\n" +
         "Artista: " + artista + "\n" +
         "Álbum: " + album + "\n" +
         "Duração: " + duracao;
+    }
+
+    @Override
+    public int compareTo(Musica ob) {
+        if (this.titulo.compareTo(ob.titulo) > 0)aux = 1;
+        if (this.titulo.compareTo(ob.titulo) < 0) aux = -1;
+        if (this.titulo.compareTo(ob.titulo) == 0) aux = 0;
+        return aux;
     }
 }

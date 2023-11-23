@@ -12,10 +12,12 @@ class Consulta{
     private Medico med;
     private LocalDateTime data_hora;
     private String anamnese;
-    public Consulta(int idConsl, LocalDateTime data_hora, String anamnese){
+    public Consulta(int idConsl, LocalDateTime data_hora, String anamnese, Paciente pac, Medico med){
         setId(idConsl);
         setDataHora(data_hora);
         setAnamnese(anamnese);
+        this.pac = pac;
+        this.med = med;
     }
     public void setId(int idConsl){
         if (idConsl > 0) this.idConsl = idConsl;

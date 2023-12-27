@@ -1,3 +1,6 @@
+import java.beans.XMLEncoder;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -98,7 +101,14 @@ class Livro extends Midia{
 
 class NMidia{
     private List<Midia> midias = new ArrayList<Midia>();
+    private int n1;
+    private String n2;
+    private boolean n3;
 
+    public void ToXML() throws IOException{
+        FileOutputStream fos = new FileOutputStream("Midia.xml");
+        XMLEncoder encoder = new XMLEncoder(fos);
+    }
     public void Inserir(Midia m){
 
     }

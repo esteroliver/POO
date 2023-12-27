@@ -1,5 +1,7 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 class Midia{
     private int id;
@@ -94,15 +96,22 @@ class Livro extends Midia{
     }
 }
 
-class Usuario{
-    private int id;
-    private int tipo;
-    private String username;
-    private String senha;
-}
+class NMidia{
+    private List<Midia> midias = new ArrayList<Midia>();
 
-class Avaliacao{
-    private int id;
-    private int nota;
-    private String comentario;
+    public void Inserir(Midia m){
+
+    }
+    public List<Midia> Listar(){
+
+    }
+    public Midia ObterID(int id){
+        return ;
+    }
+    public void Atualizar(Midia mid){
+
+    }
+    public void Excluir(int id){
+
+    }
 }

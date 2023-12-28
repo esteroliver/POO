@@ -1,53 +1,64 @@
-import java.beans.ExceptionListener;
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.beans.*;
+import java.io.*;
+import java.util.*;
 
 class Main{
     public static void main(String[] args){
-        Laboratorio lab1 = new Laboratorio();
-        Laboratorio lab2 = new Laboratorio();
-        NLaboratorio labs = new NLaboratorio();
-        labs.Inserir(lab1);
-        labs.Inserir(lab2);
+        laboratorio lab1 = new laboratorio();
+        lab1.setDescricao("laboratorio de estudos");
+        laboratorio lab2 = new laboratorio();
+        lab2.setDescricao("laboratorio do superior");
+        NLaboratorio labos = new NLaboratorio();
+        labos.Inserir(lab2);
+        labos.Inserir(lab1);
     }
 }
 
-class Laboratorio{
-    public int id;
-    public String descricao;
+class laboratorio{
+    private int id;
+    private String descricao;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
     public String toString(){
         return id + '\n' + descricao;
     }
 }
 
-class NLaboratorio{
-    List<Laboratorio> labs = new ArrayList<Laboratorio>();
+class NLaboratorio implements Serializable{
+    List<laboratorio> labs = new ArrayList<laboratorio>();
 
-    public void toXml(List<Laboratorio> laboratorios){
+    public static void toXml(List<laboratorio> labs){
         try{
-        FileOutputStream arq = new FileOutputStream("laboratorios.xml");
-        XMLEncoder enc = new XMLEncoder(arq);
-
-        enc.writeObject(laboratorios);
-        enc.close();
+            XMLEncoder enc = new XMLEncoder(new BufferedOutputStream(new FileOutputStream("laboratorios.xml")));
+            enc.writeObject(labs);
+            enc.close();
         }
         catch(FileNotFoundException ex){
 
         }
     } 
 
-    public void fromXml(){
+    @SuppressWarnings("unchecked")
+    public static void fromXml(List<laboratorio> labs){
         try{
-           FileInputStream arq = new FileInputStream("laboratorios.xml");
-           XMLDecoder dec = new XMLDecoder(arq);
-           labs = (List<Laboratorio>) dec.readObject();
+           XMLDecoder dec = new XMLDecoder(new BufferedInputStream(new FileInputStream("laboratorios.xml")));
+           Object la = dec.readObject();
+           labs = (List<laboratorio>) la;
            dec.close();
         }
         catch (FileNotFoundException ex){
@@ -55,47 +66,54 @@ class NLaboratorio{
         }
     }
 
-    public void Inserir(Laboratorio l){
-        fromXml();
-        int id = 0;
-        for (Laboratorio la : labs) {
-            if(la.id > id) id = la.id;
+    public void Inserir(laboratorio l){
+        NLaboratorio.fromXml(labs);
+        if (labs.size() == 0){
+            l.setId(1);
+            labs.add(l);
+            NLaboratorio.toXml(labs);
         }
-        l.id = id+1;
-        labs.add(l);
-        toXml(labs);
+        else{
+            int id = 0;
+            for (laboratorio la : labs) {
+                if(la.getId() > id) id = la.getId();
+            }
+            l.setId(id+1);
+            labs.add(l);
+            NLaboratorio.toXml(labs);
+        }
     }
 
-    public List<Laboratorio> Listar(){
-        fromXml();
+    public List<laboratorio> Listar(){
+        NLaboratorio.fromXml(labs);  
         return labs;
     }
 
-    public Laboratorio obterId(int id){
-        fromXml();
-        for (Laboratorio la : labs) {
-            if (la.id == id) return la;
+    public laboratorio obterId(int id){
+        NLaboratorio.fromXml(labs);  
+        for (laboratorio la : labs) {
+            if (la.getId() == id) return la;
         }
-        Laboratorio def_l1 = new Laboratorio();
+        laboratorio def_l1 = new laboratorio();
         return def_l1;
     }
 
-    public void Atualizar(Laboratorio l){
-        fromXml();
-        Laboratorio l_subs = obterId(l.id);
+    public void Atualizar(laboratorio l){
+        NLaboratorio.fromXml(labs);  
+        laboratorio l_subs = obterId(l.getId());
         if (l_subs != null){
             labs.remove(l_subs);
             labs.add(l);
         }
-        toXml(labs);
+        NLaboratorio.toXml(labs);
     }
 
-    public void Excluir(Laboratorio l){
-        fromXml();
-        Laboratorio l_subs = obterId(l.id);
+    public void Excluir(laboratorio l){
+        NLaboratorio.fromXml(labs);  
+        laboratorio l_subs = obterId(l.getId());
         if (l_subs != null){
             labs.remove(l_subs);
         }
-        toXml(labs);
+        NLaboratorio.toXml(labs);
     }
 }
